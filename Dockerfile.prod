@@ -26,6 +26,9 @@ RUN npm run build
 # NOTE: nginx is a web server that can be used to serve static files.
 FROM nginx
 
+# expose port 80
+EXPOSE 80
+
 # copy from builder phase
 # this says: copy the output of the builder phase to the nginx folder
 COPY --from=builder /app/build /usr/share/nginx/html
