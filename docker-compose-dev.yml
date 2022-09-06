@@ -1,0 +1,23 @@
+version: '3'
+services:
+  react-app:
+  # for building the react app, we use context and dockerfile
+    build: 
+      context: . # the current directory
+      dockerfile: Dockerfile.dev  # the dockerfile to use
+    container_name: react-app
+    volumes:
+      - /app/node_modules
+      - .:/app
+    ports:
+      - "3000:3000"
+  tests:
+    build: 
+      context: . # the current directory
+      dockerfile: Dockerfile.dev  # the dockerfile to use
+    container_name: tests
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
+  
